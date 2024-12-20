@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Lista de Artistas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Nacionalidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let artista of artistas">
+          <td>{{ artista.id }}</td>
+          <td>{{ artista.nombre }}</td>
+          <td>{{ artista.fechaNacimiento }}</td>
+          <td>{{ artista.nacionalidad }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
