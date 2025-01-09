@@ -1,0 +1,17 @@
+<mat-card>
+    <h1>Bienvenido al Sistema de Streaming</h1>
+    <p>Selecciona una opción:</p>
+  
+    <div class="menu">
+        <button mat-raised-button color="primary" (click)="irAArtistas()">
+            Gestionar Artistas
+          </button>          
+      <button mat-raised-button color="accent" routerLink="/albumes">
+        Gestionar Álbumes
+      </button>
+      <button mat-raised-button color="warn" routerLink="/canciones">
+        Gestionar Canciones
+      </button>
+    </div>
+  </mat-card>
+  

@@ -1,0 +1,40 @@
+<div class="container col-md-10">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>Canciones</h3>
+      <div>
+        <button (click)="irAFormulario()" class="btn btn-primary">Nueva Cancion</button>
+      </div>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Duración</th>
+            <th>Url Cancion</th>
+            <th>Artistas</th>
+            <th>Album</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cancion of canciones">
+            <td>{{cancion.id}}</td>
+            <td>{{cancion.titulo}}</td>
+            <td>{{cancion.duracion}}</td>
+            <td>{{cancion.urlCancion}}</td>
+            <td>{{cancion.artistas ? cancion.artistas : '-'}}</td>
+            <td>{{cancion.album ? cancion.album : '-'}}</td>
+            <td>
+              <button (click)="Delete(cancion)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="irAHome()" class="btn btn-secondary">Inicio</button>
+
+    </div>
+  </div>
+</div>

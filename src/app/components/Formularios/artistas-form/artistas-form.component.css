@@ -1,0 +1,17 @@
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 500px;  /* Para limitar el ancho del formulario */
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  

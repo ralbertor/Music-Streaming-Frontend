@@ -1,0 +1,43 @@
+<div class="container col-md-10">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>Albumes</h3>
+      <div>
+        <button (click)="irAFormulario()" class="btn btn-primary mr-2">Nuevo Album</button>
+      </div>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Año Lanzamiento</th>
+            <th>Descripcion</th>
+            <th>Numero Canciones</th>
+            <th>Url Portada</th>
+            <th>Artista</th>
+            <th>Canciones</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let album of albumes">
+            <td>{{album.id}}</td>
+            <td>{{album.titulo}}</td>
+            <td>{{album.anolanzamiento}}</td>
+            <td>{{album.descripcion}}</td>
+            <td>{{album.numeroCanciones}}</td>
+            <td>{{album.urlPortada}}</td>
+            <td>{{album.artista ? album.artista : '-'}}</td>
+            <td>{{album.canciones ? album.canciones : '-'}}</td>
+            <td>
+              <button (click)="Delete(album)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="irAHome()" class="btn btn-secondary">Inicio</button>
+    </div>
+  </div>
+</div>

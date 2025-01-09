@@ -19,7 +19,7 @@ export class ArtistaService {
   }
 
   createArtista(artista: any): Observable<any>{
-    return this.http.post(this.apiUrl, artista);
+    return this.http.post(`${this.apiUrl}/crearConAlbumYCanciones`, artista);
   }
 
   updateArtista(id:number, artista:any): Observable<any>{
@@ -27,6 +27,6 @@ export class ArtistaService {
   }
 
   deleteArtista(id:number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
 }

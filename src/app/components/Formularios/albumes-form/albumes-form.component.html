@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-title>Registro de Album</mat-card-title>
+    <form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Titulo del album</mat-label>
+        <input matInput formControlName="titulo" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Año de Lanzamiento</mat-label>
+        <input matInput formControlName="anolanzamiento" type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" type="string">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Número de Canciones</mat-label>
+        <input matInput formControlName="numeroCanciones" type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Url Portada</mat-label>
+        <input matInput formControlName="urlPortada" type="string">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Artista</mat-label>
+        <input matInput formControlName="artista">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Canciones</mat-label>
+        <input matInput formControlName="canciones">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </form>
+  </mat-card>
+  
+

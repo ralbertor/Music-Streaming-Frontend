@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class CancionService {
 
-  private apiUrl = 'http://localhost:8080/canciones'
+  private apiUrl = 'http://localhost:8080/api/canciones'
   constructor(private http: HttpClient) { }
 
   getCanciones(): Observable<any>{
@@ -27,7 +27,7 @@ export class CancionService {
   }
 
   deleteCancion(id:number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
   
 }
