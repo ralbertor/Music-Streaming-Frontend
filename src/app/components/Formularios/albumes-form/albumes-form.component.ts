@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlbumService } from '../../../services/album.service';
+import { Router } from '@angular/router';
+import { error } from 'console';
 
 @Component({
   selector: 'app-albumes-form',
@@ -11,23 +14,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AlbumesFormComponent {
   albumForm!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private albumService: AlbumService, private router: Router){}
 
   ngOnInit():void{
     this.albumForm = this.fb.group({
       titulo:['', Validators.required],
-      anolanzamiento:[''],
+      anoLanzamiento:[''],
       descripcion:[''],
       numeroCanciones:[''],
       urlPortada:[''],
-      artista:[''],
-      canciones:['']
+     
     });
   }
   onSubmit(): void{
     if(this.albumForm.valid){
-      console.log('Formulario enviado:',this.albumForm.value);
-      //Lógica para enviar a la API
+      this.albumService.createAlbum(this.albumForm.value).subscribe(
+        response => {
+          console.log('Álbum guardado:', response);
+          this.router.navigate(['/albumes']);
+        },
+        error => {
+          console.error('Error al guardar el álbum:', error);
+        }
+      );
+      
     }else{
       console.log('Formulario no válido');
     }

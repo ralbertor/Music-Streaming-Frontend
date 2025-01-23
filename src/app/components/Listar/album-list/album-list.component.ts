@@ -8,26 +8,30 @@ import { Router } from '@angular/router';
   standalone: false,
   
   templateUrl: './album-list.component.html',
-  styleUrl: './album-list.component.css'
+  styleUrls: ['./album-list.component.css']
 })
 export class AlbumListComponent implements OnInit{
 
-  albumes: Album[] = [];
+  albumes: any[] = [];
   constructor(private albumService: AlbumService, private router: Router){}
   ngOnInit():void{
     this.loadAlbumes();
   }
 
-  loadAlbumes():void{
-    this.albumService.getAlbumes().subscribe({
-      next: (data) => (this.albumes = data),
-      error: (err) => console.error('Error al cargar albumes', err),
-    });
+  loadAlbumes(): void {
+    this.albumService.getAlbumes().subscribe(
+      data => {
+        this.albumes = data;
+      },
+      error => {
+        console.error('Error al obtener los álbumes:', error);
+      }
+    );
   }
-  irAFormulario(){
+  irAFormulario(): void{
     this.router.navigate(['/albumesForm']) 
   }
-  irAHome() {
+  irAHome(): void {
     this.router.navigate(['']);
   }
   Delete(album:Album){

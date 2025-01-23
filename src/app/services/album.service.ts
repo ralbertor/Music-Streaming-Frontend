@@ -19,7 +19,7 @@ export class AlbumService {
   }
 
   createAlbum(album: any): Observable<any>{
-    return this.http.post(this.apiUrl, album);
+    return this.http.post(`${this.apiUrl}/add`, album);
   }
 
   updateAlbum(id:number, album:any): Observable<any>{

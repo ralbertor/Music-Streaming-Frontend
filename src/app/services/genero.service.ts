@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class GeneroService {
 
-  private apiUrl = 'http://localhost:8080/generos'
+  private apiUrl = 'http://localhost:8080/api/generos'
   constructor(private http: HttpClient) { }
 
   getGeneros(): Observable<any>{
@@ -19,7 +19,7 @@ export class GeneroService {
   }
 
   createGenero(genero: any): Observable<any>{
-    return this.http.post(this.apiUrl, genero);
+    return this.http.post(`${this.apiUrl}/add`, genero);
   }
 
   updateGenero(id:number, genero:any): Observable<any>{

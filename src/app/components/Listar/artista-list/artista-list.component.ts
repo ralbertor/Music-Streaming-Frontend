@@ -27,6 +27,10 @@ export class ArtistaListComponent implements OnInit{
   irAFormulario() {
     this.router.navigate(['/artistasForm']);  // Redirige al formulario de creación
   }
+  irAFormularioConAlbumesYCanciones() {
+    this.router.navigate(['/artistasconAlbumesyCanciones']);  // Redirige al formulario de creación
+  }
+  
   irAHome() {
     this.router.navigate(['']);
   }

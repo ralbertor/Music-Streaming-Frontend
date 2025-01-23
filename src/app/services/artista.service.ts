@@ -18,7 +18,11 @@ export class ArtistaService {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
-  createArtista(artista: any): Observable<any>{
+  createArtista(artista: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add`, artista);
+  }
+
+  createArtistaConAlbumYCanciones(artista: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/crearConAlbumYCanciones`, artista);
   }
 

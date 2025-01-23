@@ -19,7 +19,7 @@ export class CancionService {
   }
 
   createCancion(cancion: any): Observable<any>{
-    return this.http.post(this.apiUrl, cancion);
+    return this.http.post(`${this.apiUrl}/add`, cancion);
   }
 
   updateCancion(id:number, cancion:any): Observable<any>{

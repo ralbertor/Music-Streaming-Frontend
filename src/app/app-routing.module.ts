@@ -7,7 +7,7 @@ import { ArtistasFormComponent } from './components/Formularios/artistas-form/ar
 import { HomeComponent } from './components/home/home.component';
 import { AlbumesFormComponent } from './components/Formularios/albumes-form/albumes-form.component';
 import { CancionesFormComponent } from './components/Formularios/canciones-form/canciones-form.component';
-
+import { ArtistaAlbumCancionesComponent } from './components/Formularios/artista-album-canciones/artista-album-canciones.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'artistas', component: ArtistaListComponent},
@@ -15,7 +15,8 @@ const routes: Routes = [
   {path: 'canciones', component: CancionListComponent},
   {path: 'artistasForm', component: ArtistasFormComponent},
   {path: 'albumesForm', component: AlbumesFormComponent},
-  {path: 'cancionesForm', component: CancionesFormComponent}
+  {path: 'cancionesForm', component: CancionesFormComponent},
+  {path: 'artistasconAlbumesyCanciones', component: ArtistaAlbumCancionesComponent}
 
 ];
 
