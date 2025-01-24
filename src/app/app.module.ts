@@ -27,6 +27,8 @@ import { ArtistaAlbumCancionesComponent } from './components/Formularios/artista
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { AlbumesCancionesComponent } from './components/Formularios/albumes-canciones/albumes-canciones.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
   {path: 'artistasForm', component: ArtistasFormComponent},
   {path: 'albumesForm', component: AlbumesFormComponent},
   {path: 'cancionesForm', component: CancionesFormComponent},
-  {path: 'artistasconAlbumesyCanciones', component: ArtistaAlbumCancionesComponent}
+  {path: 'artistasconAlbumesyCanciones', component: ArtistaAlbumCancionesComponent},
+  {path: 'albumesconCanciones', component: AlbumesCancionesComponent}
 ];
 
 @NgModule({
@@ -53,7 +56,9 @@ const appRoutes: Routes = [
     HomeComponent,
     AlbumesFormComponent,
     CancionesFormComponent,
-    ArtistaAlbumCancionesComponent
+    ArtistaAlbumCancionesComponent,
+    AlbumesCancionesComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -72,9 +77,10 @@ const appRoutes: Routes = [
     MatListModule,
     MatIconModule,
     BrowserAnimationsModule,
+    
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

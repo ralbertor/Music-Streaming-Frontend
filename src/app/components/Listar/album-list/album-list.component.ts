@@ -18,18 +18,18 @@ export class AlbumListComponent implements OnInit{
     this.loadAlbumes();
   }
 
-  loadAlbumes(): void {
-    this.albumService.getAlbumes().subscribe(
-      data => {
-        this.albumes = data;
-      },
-      error => {
-        console.error('Error al obtener los álbumes:', error);
-      }
-    );
+  loadAlbumes(): void{
+    this.albumService.getAlbumes().subscribe({
+      next: (data) => (this.albumes = data),
+      error: (err) => console.error('Error al cargar artistas', err),
+
+  });
   }
   irAFormulario(): void{
     this.router.navigate(['/albumesForm']) 
+  }
+  irAFormularioCanciones() {
+    this.router.navigate(['/albumesconCanciones']);  // Redirige al formulario de creación
   }
   irAHome(): void {
     this.router.navigate(['']);

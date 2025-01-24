@@ -69,7 +69,7 @@ export class ArtistaAlbumCancionesComponent {
   removeCancion(index: number) {
     this.canciones.removeAt(index);
   }
-
+  
   onSubmit() {
     if (this.artistaForm.valid) {
         const artistaData = {

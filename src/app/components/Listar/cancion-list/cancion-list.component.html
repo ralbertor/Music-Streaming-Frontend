@@ -14,8 +14,6 @@
             <th>Titulo</th>
             <th>Duración</th>
             <th>Url Cancion</th>
-            <th>Artistas</th>
-            <th>Album</th> 
             <th>Acciones</th>
           </tr>
         </thead>
@@ -25,8 +23,6 @@
             <td>{{cancion.titulo}}</td>
             <td>{{cancion.duracion}}</td>
             <td>{{cancion.urlCancion}}</td>
-            <td>{{cancion.artistas ? cancion.artistas : '-'}}</td>
-            <td>{{cancion.album ? cancion.album : '-'}}</td>
             <td>
               <button (click)="Delete(cancion)" class="btn btn-danger">Delete</button>
             </td>

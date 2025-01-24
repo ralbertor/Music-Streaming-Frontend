@@ -1,0 +1,147 @@
+<mat-card>
+  <mat-card-title>Crear Álbum con Canciones y Géneros</mat-card-title>
+  <form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="titulo">Título del Álbum</label>
+      <input id="titulo" class="form-control" formControlName="titulo" required />
+    </div>
+
+    <div class="form-group">
+      <label for="anoLanzamiento">Año de Lanzamiento</label>
+      <input
+        id="anoLanzamiento"
+        class="form-control"
+        formControlName="anoLanzamiento"
+        type="number"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <input id="descripcion" class="form-control" formControlName="descripcion" required />
+    </div>
+
+    <div class="form-group">
+      <label for="numeroCanciones">Número de Canciones</label>
+      <input
+        id="numeroCanciones"
+        class="form-control"
+        formControlName="numeroCanciones"
+        type="number"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="urlPortada">URL de la Portada</label>
+      <input id="urlPortada" class="form-control" formControlName="urlPortada" required />
+    </div>
+
+    <div formArrayName="canciones">
+      <div
+        *ngFor="let cancion of canciones.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="form-group">
+          <label for="tituloCancion-{{ i }}">Título de la Canción</label>
+          <input
+            id="tituloCancion-{{ i }}"
+            class="form-control"
+            formControlName="titulo"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="duracion-{{ i }}">Duración</label>
+          <input
+            id="duracion-{{ i }}"
+            class="form-control"
+            formControlName="duracion"
+            type="number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="urlCancion-{{ i }}">URL de la Canción</label>
+          <input
+            id="urlCancion-{{ i }}"
+            class="form-control"
+            formControlName="urlCancion"
+            required
+          />
+        </div>
+
+        <div formArrayName="generos">
+          <div
+            *ngFor="let genero of getGeneros(i).controls; let j = index"
+            [formGroupName]="j"
+          >
+            <div class="form-group">
+              <label for="nombreGenero-{{ i }}-{{ j }}">Nombre del Género</label>
+              <input
+                id="nombreGenero-{{ i }}-{{ j }}"
+                class="form-control"
+                formControlName="nombre"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="anoOrigen-{{ i }}-{{ j }}">Año de Origen</label>
+              <input
+                id="anoOrigen-{{ i }}-{{ j }}"
+                class="form-control"
+                formControlName="anoOrigen"
+                type="number"
+                required
+              />
+            </div>
+
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="removeGenero(i, j)"
+            >
+              Eliminar Género
+            </button>
+          </div>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="addGenero(i)"
+        >
+          Añadir Género
+        </button>
+
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="removeCancion(i)"
+        >
+          Eliminar Canción
+        </button>
+      </div>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addCancion()"
+    >
+      Añadir Canción
+    </button>
+
+    <button mat-raised-button color="primary" type="submit">
+      Guardar Álbum
+    </button>
+  </form>
+</mat-card>

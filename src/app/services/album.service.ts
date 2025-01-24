@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -20,6 +20,13 @@ export class AlbumService {
 
   createAlbum(album: any): Observable<any>{
     return this.http.post(`${this.apiUrl}/add`, album);
+  }
+
+  createAlbumWithCanciones(album: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(`${this.apiUrl}/CrearConCanciones`, album);
   }
 
   updateAlbum(id:number, album:any): Observable<any>{

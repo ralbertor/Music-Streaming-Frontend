@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AlbumesFormComponent } from './components/Formularios/albumes-form/albumes-form.component';
 import { CancionesFormComponent } from './components/Formularios/canciones-form/canciones-form.component';
 import { ArtistaAlbumCancionesComponent } from './components/Formularios/artista-album-canciones/artista-album-canciones.component';
+import { AlbumesCancionesComponent } from './components/Formularios/albumes-canciones/albumes-canciones.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'artistas', component: ArtistaListComponent},
@@ -16,8 +17,8 @@ const routes: Routes = [
   {path: 'artistasForm', component: ArtistasFormComponent},
   {path: 'albumesForm', component: AlbumesFormComponent},
   {path: 'cancionesForm', component: CancionesFormComponent},
-  {path: 'artistasconAlbumesyCanciones', component: ArtistaAlbumCancionesComponent}
-
+  {path: 'artistasconAlbumesyCanciones', component: ArtistaAlbumCancionesComponent},
+  {path: 'albumesconCanciones', component: AlbumesCancionesComponent},
 ];
 
 @NgModule({

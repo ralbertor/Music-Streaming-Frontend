@@ -15,7 +15,6 @@
             <th>Fecha de Nacimiento</th>
             <th>Nacionalidad</th>
             <th>Álbumes</th>
-            <th>Canciones</th> 
             <th>Acciones</th>
           </tr>
         </thead>
@@ -26,7 +25,6 @@
             <td>{{artista.fechaNacimiento}}</td>
             <td>{{artista.nacionalidad}}</td>
             <td>{{artista.albumes ? artista.albumes : '-'}}</td>
-            <td>{{artista.canciones ? artista.canciones : '-'}}</td> 
             <td>
               <button (click)="Delete(artista)" class="btn btn-danger">Delete</button>
             </td>

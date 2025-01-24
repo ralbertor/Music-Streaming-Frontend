@@ -2,6 +2,7 @@
   <h3>Álbumes</h3>
   <div>
     <button (click)="irAFormulario()" class="btn btn-primary">Nuevo Álbum</button>
+    <button (click)="irAFormularioCanciones()" class="btn btn-primary">Nuevo Álbum con Canciones</button>
   </div>
 </div>
 <div class="card-body table-responsive">
@@ -14,7 +15,6 @@
         <th>Descripción</th>
         <th>Número de Canciones</th>
         <th>URL de la Portada</th>
-        <th>Artista</th>
         <th>Canciones</th> 
         <th>Acciones</th> 
       </tr>
@@ -27,7 +27,6 @@
         <td>{{album.descripcion}}</td>
         <td>{{album.numeroCanciones}}</td>
         <td>{{album.urlPortada}}</td>
-        <td>{{album.artista ? album.artista : '-'}}</td> 
         <td>{{album.canciones ? album.canciones : '-'}}</td> 
         <td>
           <button (click)="Delete(album)" class="btn btn-danger">Delete</button>
