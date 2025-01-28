@@ -1,33 +1,32 @@
-<mat-card>
-    <mat-card-title>Registro de Album</mat-card-title>
-    <form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Titulo del album</mat-label>
-        <input matInput formControlName="titulo" required>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Año de Lanzamiento</mat-label>
-        <input matInput formControlName="anoLanzamiento" type="number">
-      </mat-form-field>
+<div class="form-wrapper">
+  <form [formGroup]="albumForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div>
+      <label for="titulo">Título:</label>
+      <input id="titulo" formControlName="titulo" type="text" class="full-width" />
+    </div>
 
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Descripción</mat-label>
-        <input matInput formControlName="descripcion" type="string">
-      </mat-form-field>
+    <div>
+      <label for="anoLanzamiento">Año de Lanzamiento:</label>
+      <input id="anoLanzamiento" formControlName="anoLanzamiento" type="number" class="full-width" />
+    </div>
 
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Número de Canciones</mat-label>
-        <input matInput formControlName="numeroCanciones" type="number">
-      </mat-form-field>
+    <div>
+      <label for="descripcion">Descripción:</label>
+      <input id="descripcion" formControlName="descripcion" type="text" class="full-width" />
+    </div>
 
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Url Portada</mat-label>
-        <input matInput formControlName="urlPortada" type="string">
-      </mat-form-field>
+    <div>
+      <label for="numeroCanciones">Número de canciones:</label>
+      <input id="numeroCanciones" formControlName="numeroCanciones" type="number" class="full-width" />
+    </div>
 
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
-    </form>
-  </mat-card>
-  
+    <div>
+      <label for="urlPortada">Url Portada:</label>
+      <input id="urlPortada" formControlName="urlPortada" type="text" class="full-width" />
+    </div>
 
+    <button type="submit" [disabled]="albumForm.invalid">
+      {{ isEditMode ? 'Actualizar' : 'Crear' }}
+    </button>
+  </form>
+</div>

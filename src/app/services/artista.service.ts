@@ -27,7 +27,7 @@ export class ArtistaService {
   }
 
   updateArtista(id:number, artista:any): Observable<any>{
-    return this.http.put(`${this.apiUrl}/${id}`, artista);
+    return this.http.put(`${this.apiUrl}/update/${id}`, artista);
   }
 
   deleteArtista(id:number): Observable<any>{

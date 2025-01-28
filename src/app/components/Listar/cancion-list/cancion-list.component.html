@@ -24,6 +24,7 @@
             <td>{{cancion.duracion}}</td>
             <td>{{cancion.urlCancion}}</td>
             <td>
+              <button (click)="editarCancion(cancion.id)" class="btn btn-warning">Edit</button>
               <button (click)="Delete(cancion)" class="btn btn-danger">Delete</button>
             </td>
           </tr>

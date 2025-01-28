@@ -34,6 +34,9 @@ export class AlbumListComponent implements OnInit{
   irAHome(): void {
     this.router.navigate(['']);
   }
+  editarAlbum(albumId: number): void{
+    this.router.navigate(['/albumesForm', albumId]);
+  }
   Delete(album:Album){
     console.log('ID del album a eliminar', album.id);
     const confirmar = confirm(

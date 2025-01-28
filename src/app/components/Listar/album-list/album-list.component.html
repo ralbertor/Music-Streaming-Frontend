@@ -29,6 +29,7 @@
         <td>{{album.urlPortada}}</td>
         <td>{{album.canciones ? album.canciones : '-'}}</td> 
         <td>
+          <button (click)="editarAlbum(album.id)" class="btn btn-warning">Editar</button>
           <button (click)="Delete(album)" class="btn btn-danger">Delete</button>
         </td>
       </tr>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlbumService } from '../../../services/album.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { error } from 'console';
+
 
 @Component({
   selector: 'app-albumes-form',
@@ -13,8 +14,9 @@ import { error } from 'console';
 })
 export class AlbumesFormComponent {
   albumForm!: FormGroup;
+  isEditMode: boolean = false;
 
-  constructor(private fb: FormBuilder, private albumService: AlbumService, private router: Router){}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private albumService: AlbumService, private router: Router){}
 
   ngOnInit():void{
     this.albumForm = this.fb.group({
@@ -25,21 +27,45 @@ export class AlbumesFormComponent {
       urlPortada:[''],
      
     });
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.isEditMode = true;
+      this.albumService.getAlbum(id).subscribe({
+        next: (album) => {
+          this.albumForm.patchValue(album);
+        },
+        error: (err) => {
+          console.error('Error al cargar el album:', err);
+        }
+      });
+    }
   }
   onSubmit(): void{
     if(this.albumForm.valid){
-      this.albumService.createAlbum(this.albumForm.value).subscribe(
-        response => {
-          console.log('Álbum guardado:', response);
-          this.router.navigate(['/albumes']);
-        },
-        error => {
-          console.error('Error al guardar el álbum:', error);
-        }
-      );
-      
-    }else{
-      console.log('Formulario no válido');
+      const album = this.albumForm.value;
+
+      if(this.isEditMode){
+        const id = this.route.snapshot.params['id'];
+        this.albumService.updateAlbum(id, album).subscribe({
+          next: () => {
+            console.log('Album actualizado exitosamente');
+            this.router.navigate(['/albumes']);
+          },
+          error: (err) => {
+            console.error('Error al actualizar el album:', err);
+          }
+        });
+      } else{
+        this.albumService.createAlbum(album).subscribe({
+          next:() => {
+            console.log('Album creado exitosamente');
+            this.router.navigate(['/albumes']);
+          },
+          error: (err) => {
+            console.error('Error al crear el album:', err);
+          }
+        });
+      }
     }
   }
 }

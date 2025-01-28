@@ -23,7 +23,7 @@ export class GeneroService {
   }
 
   updateGenero(id:number, genero:any): Observable<any>{
-    return this.http.put(`${this.apiUrl}/${id}`, genero);
+    return this.http.put(`${this.apiUrl}/update/${id}`, genero);
   }
 
   deleteGenero(id:number): Observable<any>{

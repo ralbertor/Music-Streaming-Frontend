@@ -1,40 +1,72 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { error } from 'console';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistaService } from '../../../services/artista.service';
 
 @Component({
   selector: 'app-artistas-form',
   templateUrl: './artistas-form.component.html',
-  standalone: false
+  styleUrls: ['./artistas-form.component.css'],
+  standalone:false,
 })
 export class ArtistasFormComponent implements OnInit {
   artistaForm!: FormGroup;
+  isEditMode: boolean = false;
 
-  constructor(private fb: FormBuilder, private artistaService: ArtistaService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private artistaService: ArtistaService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.artistaForm = this.fb.group({
       nombre: ['', Validators.required],
-      fechaNacimiento: [''],
-      nacionalidad: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
+      nacionalidad: ['', Validators.required]
     });
+
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.isEditMode = true;
+      this.artistaService.getArtista(id).subscribe({
+        next: (artista) => {
+          this.artistaForm.patchValue(artista);
+        },
+        error: (err) => {
+          console.error('Error al cargar el artista:', err);
+        }
+      });
+    }
   }
 
   onSubmit(): void {
     if (this.artistaForm.valid) {
-      this.artistaService.createArtista(this.artistaForm.value).subscribe(
-        response => {
-          console.log('Artista guardado:', response);
-          this.router.navigate(['/artistas']);
-        },
-        error => {
-          console.error('Error al guardar el artista:', error);
-        }
-      );
-    } else {
-      console.error('El formulario no es válido');
+      const artista = this.artistaForm.value;
+
+      if (this.isEditMode) {
+        const id = this.route.snapshot.params['id'];
+        this.artistaService.updateArtista(id, artista).subscribe({
+          next: () => {
+            console.log('Artista actualizado exitosamente');
+            this.router.navigate(['/artistas']);
+          },
+          error: (err) => {
+            console.error('Error al actualizar el artista:', err);
+          }
+        });
+      } else {
+        this.artistaService.createArtista(artista).subscribe({
+          next: () => {
+            console.log('Artista creado exitosamente');
+            this.router.navigate(['/artistas']);
+          },
+          error: (err) => {
+            console.error('Error al crear el artista:', err);
+          }
+        });
+      }
     }
   }
 }

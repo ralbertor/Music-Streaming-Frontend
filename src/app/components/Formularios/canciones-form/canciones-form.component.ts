@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CancionService } from '../../../services/cancion.service';
 
 @Component({
@@ -12,31 +12,53 @@ import { CancionService } from '../../../services/cancion.service';
 })
 export class CancionesFormComponent {
   cancionForm!: FormGroup;
-  constructor(private fb: FormBuilder, private cancionService:CancionService, private router: Router){}
+  isEditMode: boolean = false;
+  constructor(private fb: FormBuilder, private route: ActivatedRoute ,private cancionService:CancionService, private router: Router){}
 
   ngOnInit():void{
     this.cancionForm=this.fb.group({
       titulo:['',Validators.required],
       duracion:[''],
       urlCancion:[''],
-    })
+    });
+    const id = this.route.snapshot.params['id'];
+    if (id){
+      this.isEditMode = true;
+      this.cancionService.getCancion(id).subscribe({
+        next: (cancion) => {
+          this.cancionForm.patchValue(cancion);
+        },
+        error: (err) => {
+          console.error('Error al cargar la canción:', err);
+        }
+      });
+    }
   }
   onSubmit(): void {
     if (this.cancionForm.valid) {
-      console.log('Datos del formulario:', this.cancionForm.value); // Añade este log para verificar los datos
-      this.cancionService.createCancion(this.cancionForm.value).subscribe(
-        response => {
-          console.log('Canción guardada:', response);
-          // Redirigir a la lista de canciones o mostrar un mensaje de éxito
-          this.router.navigate(['/canciones']);
-        },
-        error => {
-          console.error('Error al guardar la canción:', error);
-        }
-      );
-    } else {
-      console.error('El formulario no es válido');
+      const cancion = this.cancionForm.value;
+      if(this.isEditMode){
+        const id = this.route.snapshot.params['id'];
+        this.cancionService.updateCancion(id, cancion).subscribe({
+          next: () => {
+            console.log('Canción actualizada exitosamente');
+            this.router.navigate(['/canciones']);
+          },
+          error: (err) => {
+            console.error('Error al actualizar la canción:', err);
+          }
+        });
+      } else {
+        this.cancionService.createCancion(cancion).subscribe({
+          next: () => {
+            console.log('Canción creada exitosamente');
+            this.router.navigate(['/canciones']);
+          },
+          error: (err) => {
+            console.error('Error al crear la canción:', err);
+          }
+        });
+      }
     }
   }
-
 }

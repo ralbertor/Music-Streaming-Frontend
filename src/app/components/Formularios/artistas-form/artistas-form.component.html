@@ -1,23 +1,22 @@
-<mat-card>
-  <mat-card-title>Registro de Artista</mat-card-title>
-  <div class="form-wrapper">
-    <form [formGroup]="artistaForm" (ngSubmit)="onSubmit()" class="form-container">
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Nombre del Artista</mat-label>
-        <input matInput formControlName="nombre" required>
-      </mat-form-field>
+<div class="form-wrapper">
+  <form [formGroup]="artistaForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" formControlName="nombre" type="text" class="full-width" />
+    </div>
 
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput formControlName="fechaNacimiento" type="date">
-      </mat-form-field>
+    <div>
+      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+      <input id="fechaNacimiento" formControlName="fechaNacimiento" type="date" class="full-width" />
+    </div>
 
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Nacionalidad</mat-label>
-        <input matInput formControlName="nacionalidad" required>
-      </mat-form-field>
-      
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
-    </form>
-  </div>
-</mat-card>
+    <div>
+      <label for="nacionalidad">Nacionalidad:</label>
+      <input id="nacionalidad" formControlName="nacionalidad" type="text" class="full-width" />
+    </div>
+
+    <button type="submit" [disabled]="artistaForm.invalid">
+      {{ isEditMode ? 'Actualizar' : 'Crear' }}
+    </button>
+  </form>
+</div>

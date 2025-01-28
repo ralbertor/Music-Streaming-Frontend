@@ -1,27 +1,22 @@
-<mat-card>
-  
-    <mat-card-title>Registro de Cancion</mat-card-title>
-    
-    <form [formGroup]="cancionForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill" >
-        <mat-label>Titulo de la canción</mat-label>
-        <input matInput formControlName="titulo" required>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Duración</mat-label>
-        <input matInput formControlName="duracion" type="number">
-      </mat-form-field>
+<div class="form-wrapper">
+  <form [formGroup]="cancionForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div>
+      <label for="titulo">Titulo de la Canción:</label>
+      <input id="titulo" formControlName="titulo" type="text" class="full-width" />
+    </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Url de la Canción</mat-label>
-        <input matInput formControlName="urlCancion" type="string">
-      </mat-form-field>
+    <div>
+      <label for="duracion">Duración:</label>
+      <input id="duracion" formControlName="duracion" type="number" class="full-width" />
+    </div>
 
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
-    </form>
-   
-  </mat-card>
-  
+    <div>
+      <label for="urlCancion">Url de la Canciión:</label>
+      <input id="urlCancion" formControlName="urlCancion" type="text" class="full-width" />
+    </div>
 
-
+    <button type="submit" [disabled]="cancionForm.invalid">
+      {{ isEditMode ? 'Actualizar' : 'Crear' }}
+    </button>
+  </form>
+</div>

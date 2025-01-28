@@ -30,7 +30,7 @@ export class AlbumService {
   }
 
   updateAlbum(id:number, album:any): Observable<any>{
-    return this.http.put(`${this.apiUrl}/${id}`, album);
+    return this.http.put(`${this.apiUrl}/update/${id}`, album);
   }
 
   deleteAlbum(id:number): Observable<any>{

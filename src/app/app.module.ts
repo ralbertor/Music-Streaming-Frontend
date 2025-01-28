@@ -39,7 +39,10 @@ const appRoutes: Routes = [
   {path: 'albumesForm', component: AlbumesFormComponent},
   {path: 'cancionesForm', component: CancionesFormComponent},
   {path: 'artistasconAlbumesyCanciones', component: ArtistaAlbumCancionesComponent},
-  {path: 'albumesconCanciones', component: AlbumesCancionesComponent}
+  {path: 'albumesconCanciones', component: AlbumesCancionesComponent},
+  {path: 'artistasForm/:id', component: ArtistasFormComponent},
+  {path: 'albumesForm/:id', component: AlbumesFormComponent},
+  {path: 'cancionesForm/:id', component: CancionesFormComponent},
 ];
 
 @NgModule({

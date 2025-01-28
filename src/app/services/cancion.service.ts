@@ -23,7 +23,7 @@ export class CancionService {
   }
 
   updateCancion(id:number, cancion:any): Observable<any>{
-    return this.http.put(`${this.apiUrl}/${id}`, cancion);
+    return this.http.put(`${this.apiUrl}/update/${id}`, cancion);
   }
 
   deleteCancion(id:number): Observable<any>{

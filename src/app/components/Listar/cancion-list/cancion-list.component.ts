@@ -31,6 +31,10 @@ export class CancionListComponent implements OnInit{
   irAHome() {
     this.router.navigate(['']);
   }
+
+  editarCancion(cancionId: number): void {
+    this.router.navigate(['/cancionesForm', cancionId]);
+  }
   Delete(cancion:Cancion){
         console.log('ID de la canción a eliminar', cancion.id);
         const confirmar = confirm(
