@@ -66,7 +66,6 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -83,7 +82,9 @@ const appRoutes: Routes = [
     
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [provideHttpClient(), provideAnimationsAsync()],
+  providers: [
+    provideHttpClient(withFetch()), 
+    provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
