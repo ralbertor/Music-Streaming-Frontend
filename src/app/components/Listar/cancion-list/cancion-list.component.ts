@@ -8,21 +8,30 @@ import { Router } from '@angular/router';
   standalone: false,
   
   templateUrl: './cancion-list.component.html',
-  styleUrl: './cancion-list.component.css'
+  styleUrls: ['./cancion-list.component.css']
 })
 export class CancionListComponent implements OnInit{
-
   canciones: Cancion[] = [];
+  page: number = 0;
+  size: number = 10;
+  totalPages: number =0;
   constructor(private cancionService: CancionService, private router: Router){}
   ngOnInit():void{
     this.loadCanciones();
   }
 
   loadCanciones():void{
-    this.cancionService.getCanciones().subscribe({
-      next: (data) => (this.canciones = data),
+    this.cancionService.getCanciones(this.page, this.size).subscribe({
+      next: (data) => (this.canciones = data.content, this.totalPages = data.totalPages),
       error: (err) => console.error('Error al cargar canciones', err),
     });
+  }
+
+  cambiarPagina(incremeto: number): void{
+    if(this.page + incremeto >= 0 && this.page + incremeto < this.totalPages){
+      this.page += incremeto;
+      this.loadCanciones();
+    }
   }
   irAFormulario(){
     this.router.navigate(['/cancionesForm']);

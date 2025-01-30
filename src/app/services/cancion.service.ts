@@ -10,8 +10,8 @@ export class CancionService {
   private apiUrl = 'http://localhost:8080/api/canciones'
   constructor(private http: HttpClient) { }
 
-  getCanciones(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/todos`);
+  getCanciones(page: number, size: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}/todos?page=${page}&size=${size}`);
   }
 
   getCancion(id:number): Observable<any>{

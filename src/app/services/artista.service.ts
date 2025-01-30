@@ -10,8 +10,8 @@ export class ArtistaService {
   private apiUrl = 'http://localhost:8080/api/artistas';
   constructor(private http: HttpClient) { }
   
-  getArtistas(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/todos`)
+  getArtistas(page: number, size: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}/todos?page=${page}&size=${size}`)
   }
 
   getArtista(id:number): Observable<any>{

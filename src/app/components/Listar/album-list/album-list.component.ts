@@ -11,19 +11,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./album-list.component.css']
 })
 export class AlbumListComponent implements OnInit{
-
   albumes: any[] = [];
+  page: number = 0; //página principal
+  size: number = 10; //Tamaño de la página
+  totalPages:number = 0;
   constructor(private albumService: AlbumService, private router: Router){}
   ngOnInit():void{
     this.loadAlbumes();
   }
 
   loadAlbumes(): void{
-    this.albumService.getAlbumes().subscribe({
-      next: (data) => (this.albumes = data),
+    this.albumService.getAlbumes(this.page, this.size).subscribe({
+      next: (data) => (this.albumes = data.content, this.totalPages = data.totalPages),
       error: (err) => console.error('Error al cargar artistas', err),
 
   });
+  }
+  cambiarPagina(incremeto: number): void{
+    if(this.page + incremeto >= 0 && this.page + incremeto < this.totalPages){
+      this.page += incremeto;
+      this.loadAlbumes();
+    }
   }
   irAFormulario(): void{
     this.router.navigate(['/albumesForm']) 

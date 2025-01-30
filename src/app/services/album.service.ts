@@ -10,8 +10,8 @@ export class AlbumService {
   private apiUrl = 'http://localhost:8080/api/albumes'
   constructor(private http: HttpClient) { }
 
-  getAlbumes(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/todos`);
+  getAlbumes(page: number, size: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}/todos?page=${page}&size=${size}`);
   }
 
   getAlbum(id:number): Observable<any>{

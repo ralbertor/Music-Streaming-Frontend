@@ -35,5 +35,12 @@
       </tr>
     </tbody>
   </table>
-  <button (click)="irAHome()" class="btn btn-secondary">Inicio</button>
+
+  <!-- Paginación -->
+   <div class="pagination d-flex justify-content-center align-items-center mt-3">
+    <button (click)="cambiarPagina(-1)" [disabled]="page === 0" class="btn btn-secondary mx-2">Anterior</button>
+    <span>Página {{ page + 1 }} de {{ totalPages }}</span>
+    <button (click)="cambiarPagina(1)" [disabled]="page >= totalPages - 1" class="btn btn-secondary mx-2">Siguiente</button>
+  </div>
+    <button (click)="irAHome()" class="btn btn-secondary">Inicio</button>
 </div>

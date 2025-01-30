@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ArtistaListComponent implements OnInit {
   artistas: Artista[] = [];
+  page: number = 0;
+  size: number = 10;
+  totalPages:number = 0;
 
   constructor(private artistaService: ArtistaService, private router: Router) {}
 
@@ -19,10 +22,17 @@ export class ArtistaListComponent implements OnInit {
   }
 
   loadArtistas(): void {
-    this.artistaService.getArtistas().subscribe({
-      next: (data) => (this.artistas = data),
+    this.artistaService.getArtistas(this.page, this.size).subscribe({
+      next: (data) => (this.artistas = data.content, this.totalPages = data.totalPages),
       error: (err) => console.error('Error al cargar artistas', err)
     });
+  }
+
+  cambiarPagina(incremeto: number): void {
+    if(this.page + incremeto >= 0 && this.page + incremeto < this.totalPages){
+      this.page += incremeto;
+      this.loadArtistas();
+    }
   }
 
   irAFormulario() {

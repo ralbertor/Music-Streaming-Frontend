@@ -7,19 +7,21 @@ import { ArtistaService } from '../../services/artista.service';
   standalone: false,
   
   templateUrl: './artistas.component.html',
-  styleUrl: './artistas.component.css'
+  styleUrls: ['./artistas.component.css']
 })
 export class ArtistasComponent implements OnInit{
   artistas: any[] = [];
+  page: number = 0; //página principal
+  size: number = 10; //Tamaño de la página
   constructor(private artistaService: ArtistaService){}
   ngOnInit(): void {
-      this.artistaService.getArtistas().subscribe(artistas =>{
-        this.artistas=artistas
-        console.log(this.artistas)
-      },
-      (error) =>{
-        console.error('Error al obtener artistas:', error);
-      }
-      );
+      this.loadArtistas();
+  }
+
+  loadArtistas(): void {
+    this.artistaService.getArtistas(this.page, this.size).subscribe({
+      next: (data) => (this.artistas = data.content),
+      error: (err) => console.error('Error al cargar artistas', err)
+    });
   }
 }
